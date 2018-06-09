@@ -5,6 +5,8 @@
  */
 namespace Shesh\Test\Setup;
 
+use Magento\Eav\Setup\EavSetup;
+use Magento\Eav\Setup\EavSetupFactory;
 use Shesh\Test\Model\Test;
 use Shesh\Test\Model\TestFactory;
 use Magento\Framework\Setup\InstallDataInterface;
@@ -17,20 +19,27 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 class InstallData implements InstallDataInterface
 {
     /**
+     * EAV setup factory
+     *
+     * @var EavSetupFactory
+     */
+    protected $eavSetupFactory; 
+    /**
      * Test factory
      *
      * @var TestFactory
      */
     private $testFactory;
-
     /**
      * Init
      *
      * @param TestFactory $testFactory
+     * @param EavSetupFactory $eavSetupFactory
      */
-    public function __construct(TestFactory $testFactory)
+    public function __construct(TestFactory $testFactory,EavSetupFactory $eavSetupFactory)
     {
         $this->testFactory = $testFactory;
+        $this->eavSetupFactory = $eavSetupFactory;
     }
 
     /**
@@ -39,6 +48,35 @@ class InstallData implements InstallDataInterface
      */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
+        /** @var EavSetup $eavSetup */
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+        //associate these attributes with new product type
+        $fieldList = [
+            'price',
+            'special_price',
+            'special_from_date',
+            'special_to_date',
+            'minimal_price',
+            'cost',
+            'tier_price',
+            'weight',
+        ];
+        // make these attributes applicable to new product type
+        foreach ($fieldList as $field) {
+            $applyTo = explode(
+                ',',
+                $eavSetup->getAttribute(\Magento\Catalog\Model\Product::ENTITY, $field, 'apply_to')
+            );
+            if (!in_array(\Shesh\Test\Model\Product\Type::TYPE_ID, $applyTo)) {
+                $applyTo[] = \Shesh\Test\Model\Product\Type::TYPE_ID;
+                $eavSetup->updateAttribute(
+                    \Magento\Catalog\Model\Product::ENTITY,
+                    $field,
+                    'apply_to',
+                    implode(',', $applyTo)
+                );
+            }
+        }
         $testItems = [
             [
                 'name' => 'John Doe',

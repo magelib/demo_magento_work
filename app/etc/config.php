@@ -5,6 +5,7 @@ return [
     'Magento_Directory' => 1,
     'Magento_Eav' => 1,
     'Magento_Backend' => 1,
+    'FME_Banners' => 0,
     'Magento_Theme' => 1,
     'Magento_Customer' => 1,
     'Magento_AdminNotification' => 1,
@@ -148,8 +149,8 @@ return [
     'Shesh_Test' => 1,
     'Shopial_Facebook' => 1,
     'Temando_Shipping' => 1,
-    'Trive_Core' => 0,
-    'Trive_Revo' => 0,
+    'Trive_Core' => 1,
+    'Trive_Revo' => 1,
     'Vertex_Tax' => 1
   ]
 ];
