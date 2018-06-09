@@ -1,0 +1,44 @@
+<?php
+/**
+ * Copyright © 2018 Shesh Ltd. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/**
+ * @var $block \Shesh\Test\Block\Test
+ */
+?>
+
+<p><?php //echo $block->getTest(); ?></p>
+<p><?php //echo __('This is a text.') ?></p>
+
+<table class="table table-bordered" id="example">
+    <thead>
+      <tr>
+        <th>S.No.</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      $i =1 ;foreach ($block->getItems() as $item): ?>  
+      <tr>
+        <td><?php echo $i++; ?></td>
+        <td><?php echo $item->getName(); ?></td>
+        <td><?php echo $item->getEmail(); ?></td>
+        <td><?php echo date('Y-m-d',strtotime($item->getCreationTime())); ?></td>
+      </tr>
+    <?php endforeach; ?>  
+    </tbody>
+</table>
+<script>
+    require([
+        'jquery',
+        'Shesh_Test/js/jquery.dataTables.min'
+    ], function($, $t){
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    })
+</script>

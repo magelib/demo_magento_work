@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 AionNext Ltd. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title></title>
+        <!-- Add external resources--> 
+	    <link rel="stylesheet" type="text/css" src="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" src_type="url" />
+        
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Shesh\Test\Block\Test" name="testPage" template="Shesh_Test::test.phtml" />
+        </referenceContainer>
+    </body>
+</page>

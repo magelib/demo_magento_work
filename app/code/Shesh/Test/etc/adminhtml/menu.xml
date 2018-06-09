@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2018 Shesh Ltd. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Shesh_Test::content_elements" title="Test Extension" module="Magento_Backend" sortOrder="10" parent="Magento_Backend::content"
+             resource="Magento_Backend::content_elements"/>
+        <add id="Shesh_Test::shesh_test" title="Manage Items" module="Shesh_Test" sortOrder="10" parent="Shesh_Test::content_elements" action="test/test"
+             resource="Shesh_Test::test"/>
+    </menu>
+</config>

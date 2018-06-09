@@ -1,0 +1,84 @@
+Commands :
+__________
+
+php bin/magento setup:upgrade
+php bin/magento indexer:reindex
+php bin/magento cache:clean
+php bin/magento cache:flush
+php bin/magento setup:static-content:deploy
+
+/**
+ * Issue- Product image not showing
+ *___________________________________
+ *
+ */
+rm -rf var/view_preprocessed/*
+php bin/magento cache:clean
+php bin/magento setup:static-content:deploy -f --theme Magento/backend en_US
+php bin/magento setup:static-content:deploy -f --theme Agestor/default ru_RU
+php bin/magento cache:clean
+
+/** magento2.demo.ubertheme.com/ **/
+2) delete files from pub/static (excluding .htacces) 
+
+
+/**
+ * Add products (File not found issue after adding  new product)
+ *
+ */
+ Copy all files from  "var/magento/module-email/view/frontend/email" folder to "var/magento/module-email/view/adminhtml/email"
+folder then clean cache and reload page
+
+/**
+* catalog issue : product not showing in home page
+*
+*/ 
+php bin/magento cache:clean
+php bin/magento indexer:reindex
+
+Important Links :
+________________
+
+
+https://www.siteground.com/tutorials/magento/
+https://www.tutorialspoint.com/magento/index.htm
+https://magenticians.com/add-custom-field-in-magento-2-contact-page/
+https://solwininfotech.com/documents/magento2/adbeaut/#template_configuration
+https://alanstorm.com/category/magento/
+https://github.com/trive-digital/Revo-ProductSliderM2
+http://blog.mageworx.com/2017/06/how-to-install-a-theme-in-magento-2/
+https://magento.stackexchange.com/questions/158646/magento-2-products-not-showing-in-category-but-are-visible-via-search
+
+
+New work :
+https://www.w3.org/WAI/WCAG20/quickref/#ensure-compat
+http://costcostyle.azurewebsites.net/ux_styleguide/ThirdPartySiteStandards.html
+
+
+After Theme uninstall:-
+UPDATE cms_page SET custom_theme = NULL WHERE custom_theme IS NOT NULL
+
+update indexer_state set status='invalid' where status ='working'
+
+
+DELETE FROM `eav_attribute` WHERE `source_model` LIKE '%Mageplaza%' OR `backend_model` LIKE '%Mageplaza%' OR `frontend_model` LIKE '%Mageplaza%'
+
+
+Fix error : 
+https://magento.stackexchange.com/questions/224089/magento-2-tries-to-load-old-theme-on-category-pages
+
+
+
+ssh/sftp (not ftp)
+
+host: 655240.s.dedikuoti.lt
+user: mugloodev
+pass: urocenti62
+
+command to take backup of database and code 
+
+php bin\magento setup:backup --code --db
+
+
+Add plugin :
+https://magento.stackexchange.com/questions/95017/adding-a-non-category-link-to-the-navigation-links-in-magento-2?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
