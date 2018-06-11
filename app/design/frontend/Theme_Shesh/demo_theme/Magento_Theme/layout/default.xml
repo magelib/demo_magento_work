@@ -9,5 +9,10 @@
         </referenceBlock>
         <!--<move element="top.search" destination="header.container"  before="-" />
         <move element="minicart" destination="header.panel" />-->
+         <referenceContainer name="page.top"> 
+ 		    <container name="banner" as="banner" label="Banner"   htmlTag="div" htmlClass="banner" htmlId="banner">
+				<block class="Magestore\Bannerslider\Block\Bannerslider" name="bannerslider.content.top" before="-" />
+		   </container>
+		 </referenceContainer>
     </body>
 </page>
