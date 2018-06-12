@@ -38,9 +38,11 @@ $bannerCollection = $block->getBannerCollection();
             if(slider && slider[0]) {
                 var height = $(slider[0]).find('.slides li img').height();
                 $(slider[0]).find('.slides li img').each(function(index, element){
-                    if($(element).height() > height) {
+                    /*if($(element).height() > height) {
                         height = $(element).height();
-                    }
+                    }*/
+                    
+                    height = '<?php echo $slider->getHeight() ?>' ;
                 });
                 $(slider[0]).find('.slides li,.slides  li a,.slides li img').css('height', height + 'px');
             }
@@ -54,7 +56,7 @@ $bannerCollection = $block->getBannerCollection();
                 case STYLESLIDE_FLEXSLIDER_ONE:
                     $('.' + flexSliderSelector).flexslider({
                         animation: '<?php echo $block->escapeHtml($slider->getData("animationB")); ?>',
-                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
+                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,                        
                         start: function (slider) {
                             fitImageSlider(slider);
                         }

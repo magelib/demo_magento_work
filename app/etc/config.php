@@ -146,6 +146,7 @@ return [
     'Magento_WishlistAnalytics' => 1,
     'Magento_WishlistSampleData' => 1,
     'Magestore_Bannerslider' => 1,
+    'SR_DeliveryDate' => 1,
     'Shesh_Blog' => 1,
     'Shesh_FirstUnit' => 1,
     'Shesh_Test' => 1,

@@ -80,5 +80,15 @@ command to take backup of database and code
 php bin\magento setup:backup --code --db
 
 
+/**
+ * Magento 2: Reset Customer Password from Database
+ *
+ *
+ */
+ Just change "YOURPASSWORD" below (keep the xxx:es) and voila!
+
+UPDATE `customer_entity` SET `password_hash` = CONCAT(SHA2('xxxxxxxxYOURPASSWORD', 256), ':xxxxxxxx:1') WHERE `entity_id` = 1;   
+
+
 Add plugin :
 https://magento.stackexchange.com/questions/95017/adding-a-non-category-link-to-the-navigation-links-in-magento-2?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
